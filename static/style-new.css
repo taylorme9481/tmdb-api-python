@@ -1,0 +1,327 @@
+* {box-sizing: border-box}
+footer {
+  width: 1395px;
+  overflow:hidden;
+  text-align: right;
+  padding:2px 10px 2px 2px;
+  color: #f2f2f294;
+  font-size: 12px;
+  background-color: #c00b0b8c;
+}
+
+#footerHome {
+  margin-top:100px;
+}
+
+#footerSearch{
+  margin-top:480px; /* 0px */
+}
+
+body {
+    background-color: black;
+    font-family: 'Raleway', sans-serif;
+    border-right:2px #c00b0b solid;
+    border-left:#c00b0b;
+}
+
+.main {
+    position: absolute;
+    top:65px;
+    left:200px;
+    right: 0;
+    margin: auto;
+}
+
+.center {
+    text-align:center;
+}
+
+.header {
+    text-align:left;
+    background-image:linear-gradient(to right, black,black,black, black, #c00b0b 99.8% );
+}
+
+.right {
+    text-align:right;
+}
+
+h1 {
+    color:#c00b0b;
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 400;
+}
+
+h3 {
+    font-weight: 400;
+}
+
+h4 {
+    font-weight: 500;
+}
+
+.white {
+    color:white;
+}
+
+
+  /***************************************************************** VERTICAL TABS *****************************************************/
+
+.tab-vertical {
+  float: left;
+  background-color: black;
+  width: 10%;
+  height: 300px;
+}
+
+.tab-vertical button {
+  display: block;
+  background-color: black;
+  color: white;
+  padding: 22px 16px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab-vertical button:hover {
+  background-color: black;
+  font-weight:bold;
+  color:#c00b0b;
+}
+
+/* Create an active/current "tab button" class */
+.tab-vertical button.active {
+  font-weight:bold;
+  border-bottom: 1px #ccc solid;
+  color:#c00b0b;
+}
+
+/* Style the tab content */
+.tabcontent-vertical {
+  float: left;
+  padding: 0px 12px;
+  border-left:1px #ccc solid;
+  width: 90%;
+}
+  /***************************************************************** SEARCH *****************************************************/
+
+
+.form_btn:hover {
+    background-color: #c00b0b;
+    color:white;
+}
+
+.SearchHTML {
+    background-image: linear-gradient(#c00b0b, #1a0000);
+    text-align: center;
+    height:270px;
+    border-radius: 1px;
+}
+
+button {
+    padding:8px;
+    background-color: black;
+    color:white;
+    font-size: 14px;
+    width:75px;
+    border-radius: 4px;
+}
+
+  button:hover {
+    background-color: #cecece;
+  }
+  input {
+    font-size: 12px;
+    width:160px;
+    border:0px;
+    border-radius: 4px;
+    width: 400px;
+    height:25px;
+    padding:6px;
+  }
+    /***************************************************************** SEARCH RESULTS *****************************************************/
+/* Style the tab */
+.result {
+  border-left: 8px #c00b0b solid;
+  width: 100%;
+  margin:auto 0;
+  height: 300px;
+  padding: 10px;
+}
+.part1-photo {
+  width: 20%;
+  /* background-color: green; */
+  float:left;
+}
+.part1-photo img { margin:auto; }
+
+.part2-main {
+  width: 80%;
+  /* background-color: blue; */
+  float:right;
+
+}
+.part2-main h2, .part2-main h3 {
+  padding:0px;
+  color:white;
+  font-weight: 700;
+  /* background-color: greenyellow; */
+}
+.part2-main p {
+  margin:0px;
+  padding:0px;
+  color:rgb(214, 209, 209); font-size:14px;
+}
+.star { color: #c00b0b;
+  margin: 1px;
+  font-size: 12px;
+ }
+
+.showMoreBtn {
+    background-color: #c00b0b;
+    color: white;
+    font-size: 15px;
+    width: 100px;
+    margin-top: 20px;
+}
+
+/***************************************************************** HOME *****************************************************/
+.mySlides, .mySlides2 {display: none; text-align: center}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container, .slideshow-container2  {
+  width: 780px;
+  height: 400px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text, .text2 {
+  color: #f2f2f2;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 40px 12px;
+  background-color: rgba(0, 0, 0, 0.658);
+  position: absolute;
+  bottom: -39px;
+  width: 780px;
+  text-align: center;
+}
+
+/* Fading animation */
+.fade, .fade2 {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@-webkit-keyframes fade2 {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade2 {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/***************************************************************** SHOW MORE popup *****************************************************/
+
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #cacaca;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 880px;
+  overflow: auto; /* Enable scroll if needed */
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-cast {
+
+  display: inline-block; margin-right: 10px; text-align: center;
+}
+.modal-cast p {
+  font-size:12px;
+  margin:1px;
+}
+
+.review-now{
+  width:100%; margin:10px 0px 10px 0px;
+}
+
+.p_info {
+
+  text-decoration: none;
+  color: #c00b0b;
+  font-size: 14px;
+  font-weight: 900;
+}
+.p_content {
+  color:black; font-size:12px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+}
+
+.p_content:hover {
+  color:black; font-size:12px;
+}
+
+.p_reviews_separator {
+  height:1px; background-color: #8d8b8b85; width:80%; margin:auto;
+}
+
+
+.review_heading {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
