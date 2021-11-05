@@ -1,7 +1,7 @@
-from flask import Flask, request, render_template, url_for, json
-import requests
 from datetime import *
-from dateutil.relativedelta import *
+
+import requests
+from flask import Flask
 
 TMDB_API_KEY = "602ffba9442593b52d93bc5c7bea0054"
 movie_genres_dict = dict()
@@ -25,7 +25,7 @@ def getTrendingMovies():
     responseDict = requestResponse.json()
 
     customResponse = {"trending_movies": list()}
-    LIMIT = 0
+    LIMIT = 1
     for movieDict in responseDict['results']:
         customResponse['trending_movies'].append({
             "backdrop_path": "https://image.tmdb.org/t/p/w780" + movieDict["backdrop_path"] if movieDict[
