@@ -7,16 +7,12 @@ TMDB_API_KEY = "602ffba9442593b52d93bc5c7bea0054"
 movie_genres_dict = dict()
 tv_genres_dict = dict()
 
-application = Flask(__name__)
+app = Flask(__name__)
 
 
 # HOME PAGE - trending movies this week
-@application.route('/movies/get-trending-week', methods=['GET'])
+@app.route('/movies/get-trending-week', methods=['GET'])
 def getTrendingMovies():
-    """
-    Method that returns the JSON of trending movies in the last week.
-    """
-
     # constructing the url
     url = "https://api.themoviedb.org/3/trending/movie/week?"
     url += f"api_key={TMDB_API_KEY}"
@@ -25,7 +21,7 @@ def getTrendingMovies():
     responseDict = requestResponse.json()
 
     customResponse = {"trending_movies": list()}
-    LIMIT = 1
+    LIMIT = 0
     for movieDict in responseDict['results']:
         customResponse['trending_movies'].append({
             "backdrop_path": "https://image.tmdb.org/t/p/w780" + movieDict["backdrop_path"] if movieDict[
@@ -45,13 +41,13 @@ def getTrendingMovies():
 
 
 # HOME PAGE - TV Today
-@application.route('/tv/airing-today', methods=['GET'])
+@app.route('/tv/airing-today', methods=['GET'])
 def getTVOnAirToday():
     """
     Method that returns shows on TV today.
     """
 
-    url = "https://api.themoviedb.org/3/tv/airing_today?" + f"api_key={TMDB_API_KEY}&language=en-US&page=1"
+    url = "https://api.themoviedb.org/3/tv/airing_today?" + f"api_key={TMDB_API_KEY}"
     requestResponse = requests.get(url)
     responseDict = requestResponse.json()
 
@@ -75,8 +71,10 @@ def getTVOnAirToday():
     return customResponse
 
 
+
+
 # SEARCH PAGE - search endpoint
-@application.route('/search/<category>/<query>', methods=['GET'])
+@app.route('/search/<category>/<query>', methods=['GET'])
 def getSearchResults(category, query):
     """
     Method that returns search query details for a query
@@ -94,18 +92,15 @@ def getSearchResults(category, query):
         return searchMoviesAndTV(query)
 
 
-@application.route('/movie/<movie_id>', methods=['GET'])
+@app.route('/movie/<movie_id>', methods=['GET'])
 def getMovieDetails(movie_id):
-    """
-    return all details about the movie.
-    """
     # get details endpoint
     # get credits endpoint
     # get reviews endpoint
     # get watch providers endpoint
     customResponse = dict()
 
-    details_url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}&language=en-US"
+    details_url = f"https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}"
     requestResponse = requests.get(details_url)
     responseDict = requestResponse.json()
 
@@ -123,7 +118,7 @@ def getMovieDetails(movie_id):
     customResponse["vote_average"] = calculate_stars(responseDict["vote_average"]),
     customResponse["vote_count"] = responseDict["vote_count"]
 
-    credits_url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={TMDB_API_KEY}&language=en-US"
+    credits_url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits?api_key={TMDB_API_KEY}"
     requestResponse = requests.get(credits_url)
     responseDict = requestResponse.json()
 
@@ -140,7 +135,7 @@ def getMovieDetails(movie_id):
         if LIMIT == 8:
             break
 
-    reviews_url = f"https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key={TMDB_API_KEY}&language=en-US&page=1"
+    reviews_url = f"https://api.themoviedb.org/3/movie/{movie_id}/reviews?api_key={TMDB_API_KEY}&page=1"
     requestResponse = requests.get(reviews_url)
     responseDict = requestResponse.json()
 
@@ -161,7 +156,7 @@ def getMovieDetails(movie_id):
     return customResponse
 
 
-@application.route("/tv/<tv_id>", methods=['GET'])
+@app.route("/tv/<tv_id>", methods=['GET'])
 def getTVDetails(tv_id):
     # get details endpoint
     # get credits endpoint
@@ -170,7 +165,7 @@ def getTVDetails(tv_id):
 
     customResponse = dict()
 
-    details_url = f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={TMDB_API_KEY}&language=en-US"
+    details_url = f"https://api.themoviedb.org/3/tv/{tv_id}?api_key={TMDB_API_KEY}"
     requestResponse = requests.get(details_url)
     responseDict = requestResponse.json()
 
@@ -189,12 +184,11 @@ def getTVDetails(tv_id):
     customResponse["vote_average"] = calculate_stars(responseDict["vote_average"])
     customResponse["vote_count"] = responseDict["vote_count"]
 
-    credits_url = f"https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key={TMDB_API_KEY}&language=en-US"
+    credits_url = f"https://api.themoviedb.org/3/tv/{tv_id}/credits?api_key={TMDB_API_KEY}"
     requestResponse = requests.get(credits_url)
     responseDict = requestResponse.json()
 
     customResponse["actors"] = list()
-    LIMIT = 0
     for actor in responseDict["cast"]:
         customResponse["actors"].append({
             "name": actor["name"],
@@ -206,12 +200,11 @@ def getTVDetails(tv_id):
         if LIMIT == 8:
             break
 
-    reviews_url = f"https://api.themoviedb.org/3/tv/{tv_id}/reviews?api_key=97588ddc4a26e3091152aa0c9a40de22&language=en-US&page=1"
+    reviews_url = f"https://api.themoviedb.org/3/tv/{tv_id}/reviews?api_key={TMDB_API_KEY}&page=1"
     requestResponse = requests.get(reviews_url)
     responseDict = requestResponse.json()
     customResponse["reviews"] = list()
 
-    LIMIT = 0
     for review in responseDict["results"]:
         customResponse["reviews"].append({
             "username": review["author_details"]["username"],
@@ -235,7 +228,6 @@ def searchMovies(query):
     responseDict = requestResponse.json()
     customResponse = {"search_results": list()}
 
-    LIMIT = 0
     for movieDict in responseDict['results']:
         customResponse['search_results'].append({
             "poster_path": "https://image.tmdb.org/t/p/w185" + movieDict["poster_path"] if movieDict[
@@ -257,12 +249,12 @@ def searchMovies(query):
 
 
 def searchTV(query):
-    url = "https://api.themoviedb.org/3/search/tv?" + f"api_key={TMDB_API_KEY}&language=en-US&page=1&query={query}&include_adult=false"
+    url = "https://api.themoviedb.org/3/search/tv?" + f"api_key={TMDB_API_KEY}&page=1&query={query}&include_adult=false"
     requestResponse = requests.get(url)
     responseDict = requestResponse.json()
 
     customResponse = {"search_results": list()}
-    LIMIT = 0
+    
     for tvDict in responseDict['results']:
         customResponse['search_results'].append({
             "poster_path": "https://image.tmdb.org/t/p/w185" + tvDict["poster_path"] if tvDict[
@@ -284,7 +276,7 @@ def searchTV(query):
 
 
 def searchMoviesAndTV(query):
-    url = "https://api.themoviedb.org/3/search/multi?" + f"api_key={TMDB_API_KEY}&language=en-US&query={query}&page=1&include_adult=false"
+    url = "https://api.themoviedb.org/3/search/multi?" + f"api_key={TMDB_API_KEY}&query={query}&page=1&include_adult=false"
     requestResponse = requests.get(url)
     responseDict = requestResponse.json()
 
@@ -332,12 +324,12 @@ def populate_genres_dict():
     global movie_genres_dict
     global tv_genres_dict
 
-    url = "https://api.themoviedb.org/3/genre/movie/list?" + f"api_key={TMDB_API_KEY}&language=en-US"
+    url = "https://api.themoviedb.org/3/genre/movie/list?" + f"api_key={TMDB_API_KEY}"
     requestResponse = requests.get(url)
     responseDict = requestResponse.json()
     movie_genres_dict = {genre['id']: genre['name'] for genre in responseDict['genres']}
 
-    url = "https://api.themoviedb.org/3/genre/tv/list?" + f"api_key={TMDB_API_KEY}&language=en-US"
+    url = "https://api.themoviedb.org/3/genre/tv/list?" + f"api_key={TMDB_API_KEY}"
     requestResponse = requests.get(url)
     responseDict = requestResponse.json()
     tv_genres_dict = {genre['id']: genre['name'] for genre in responseDict['genres']}
@@ -355,7 +347,7 @@ def calculate_spoken_languages(languages):
     return ", ".join([language["english_name"] for language in languages])
 
 
-@application.route('/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def home():
     print("Welcome!")
     home_movies = getTrendingMovies()
@@ -363,9 +355,9 @@ def home():
     # print("home_movies:", home_movies)
     # print("home_TV:", home_TV)
     # home_movies=home_movies, home_TV=home_TV
-    return application.send_static_file("hw3.html")
+    return app.send_static_file("hw3.html")
 
 
 if __name__ == '__main__':
     populate_genres_dict()
-    application.run(debug=True, port=5001)
+    app.run(debug=True, port=5001)

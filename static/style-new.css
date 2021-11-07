@@ -1,4 +1,7 @@
-* {box-sizing: border-box}
+* {
+  box-sizing: border-box
+}
+
 footer {
   width: 1395px;
   overflow:hidden;
@@ -6,7 +9,7 @@ footer {
   padding:2px 10px 2px 2px;
   color: #f2f2f294;
   font-size: 12px;
-  background-color: #c00b0b8c;
+  background-color: #000000;
 }
 
 #footerHome {
@@ -38,7 +41,7 @@ body {
 
 .header {
     text-align:left;
-    background-image:linear-gradient(to right, black,black,black, black, #c00b0b 99.8% );
+    background-image:linear-gradient(to right, black,black,black, black, red 99.8% );
 }
 
 .right {
@@ -46,7 +49,7 @@ body {
 }
 
 h1 {
-    color:#c00b0b;
+    color:red;
     font-weight: 700;
 }
 
@@ -93,14 +96,14 @@ h4 {
 .tab-vertical button:hover {
   background-color: black;
   font-weight:bold;
-  color:#c00b0b;
+  color:red;
 }
 
 /* Create an active/current "tab button" class */
 .tab-vertical button.active {
   font-weight:bold;
   border-bottom: 1px #ccc solid;
-  color:#c00b0b;
+  color:red;
 }
 
 /* Style the tab content */
@@ -114,12 +117,12 @@ h4 {
 
 
 .form_btn:hover {
-    background-color: #c00b0b;
+    background-color: red;
     color:white;
 }
 
 .SearchHTML {
-    background-image: linear-gradient(#c00b0b, #1a0000);
+    background-image: linear-gradient(red, #1a0000);
     text-align: center;
     height:270px;
     border-radius: 1px;
@@ -149,7 +152,7 @@ button {
     /***************************************************************** SEARCH RESULTS *****************************************************/
 /* Style the tab */
 .result {
-  border-left: 8px #c00b0b solid;
+  border-left: 8px red solid;
   width: 100%;
   margin:auto 0;
   height: 300px;
@@ -172,20 +175,20 @@ button {
   padding:0px;
   color:white;
   font-weight: 700;
-  /* background-color: greenyellow; */
+  background-color: greenyellow; 
 }
 .part2-main p {
   margin:0px;
   padding:0px;
   color:rgb(214, 209, 209); font-size:14px;
 }
-.star { color: #c00b0b;
+.star { color: red;
   margin: 1px;
   font-size: 12px;
  }
 
 .showMoreBtn {
-    background-color: #c00b0b;
+    background-color: red;
     color: white;
     font-size: 15px;
     width: 100px;
@@ -304,12 +307,16 @@ img {vertical-align: middle;}
 .p_info {
 
   text-decoration: none;
-  color: #c00b0b;
+  color: red;
   font-size: 14px;
   font-weight: 900;
 }
 .p_content {
-  color:black; font-size:12px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  color:black; 
+  font-size:12px; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  display: -webkit-box; 
 }
 
 .p_content:hover {
@@ -317,7 +324,10 @@ img {vertical-align: middle;}
 }
 
 .p_reviews_separator {
-  height:1px; background-color: #8d8b8b85; width:80%; margin:auto;
+  height:1px; 
+  background-color: grey; 
+  width:80%; 
+  margin:auto;
 }
 
 
